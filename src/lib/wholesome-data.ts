@@ -144,7 +144,7 @@ export const naira = (value: number) =>
 
 /** Next free slot after a locked one, in 5-minute stagger as per anti-collision rules. */
 export function suggestAfter(slot: string) {
-  const [h, m] = slot.split(":").map(Number);
+  const [h = 0, m = 0] = slot.split(":").map(Number);
   const total = h * 60 + m + 5;
   return `${String(Math.floor(total / 60)).padStart(2, "0")}:${String(total % 60).padStart(2, "0")}`;
 }
