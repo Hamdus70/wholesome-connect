@@ -90,7 +90,7 @@ function EmrDesk() {
     "Troponin I (high sensitivity)",
     "Lipid Profile",
   ]);
-  const [labId, setLabId] = useState(PARTNER_DIRECTORY[0].id);
+  const [labId, setLabId] = useState("lab-sapphire");
 
   const [medications, setMedications] = useState<Medication[]>([
     {
@@ -146,7 +146,8 @@ function EmrDesk() {
 
   const urgency = remaining <= 300 ? "critical" : remaining <= 600 ? "warning" : "normal";
   const elapsedPct = ((TOTAL_SECONDS - remaining) / TOTAL_SECONDS) * 100;
-  const selectedLab = PARTNER_DIRECTORY.find((p) => p.id === labId)!;
+  const selectedLab =
+    PARTNER_DIRECTORY.find((p) => p.id === labId) ?? PARTNER_DIRECTORY[0]!;
 
   const sendRequisition = () => {
     if (selectedTests.length === 0) {
